@@ -1,0 +1,73 @@
+---
+---
+
+<header class="site-header">
+	<a href="/redscribe-site/" class="wordmark">
+		<svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+			<rect width="40" height="40" rx="9" fill="#111213"/>
+			<rect x="9" y="11" width="22" height="4" rx="2" fill="#669966"/>
+			<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
+			<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
+		</svg>
+		<span class="mono">RedScribe</span>
+	</a>
+	<nav aria-label="Primary">
+		<a href="https://redscribe-labs.github.io/redscribe-docs/">Docs</a>
+		<a href="https://github.com/redscribe-labs/redscribe">GitHub</a>
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		max-width: var(--content-width);
+		margin: 0 auto;
+		padding: 1.75rem 1.5rem 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.wordmark {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		text-decoration: none;
+		color: var(--ink);
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+	}
+
+	.wordmark svg {
+		flex: none;
+		border-radius: 6px;
+	}
+
+	nav {
+		display: flex;
+		gap: 1.75rem;
+	}
+
+	nav a {
+		text-decoration: none;
+		color: var(--ink-soft);
+		font-size: 0.9375rem;
+		border-bottom: 1px solid transparent;
+		padding-bottom: 2px;
+		transition: border-color 150ms ease, color 150ms ease;
+	}
+
+	nav a:hover {
+		color: var(--ink);
+		border-color: var(--hairline);
+	}
+
+	@media (max-width: 30rem) {
+		.site-header {
+			padding-top: 1.25rem;
+		}
+		nav {
+			gap: 1.1rem;
+		}
+	}
+</style>

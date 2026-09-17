@@ -1,0 +1,157 @@
+/*
+ * RedScribe marketing site design system.
+ *
+ * Every color is a real token from the app's own COLOR_SCHEME.md, not a
+ * new palette invented for this page. Two typefaces, both the exact
+ * families the app itself ships and self-hosts: IBM Plex Mono for
+ * headlines and data, Inter for body copy.
+ */
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/redscribe-site/fonts/inter-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/redscribe-site/fonts/inter-500.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/redscribe-site/fonts/inter-600.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/redscribe-site/fonts/inter-700.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/redscribe-site/fonts/ibm-plex-mono-500.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/redscribe-site/fonts/ibm-plex-mono-600.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/redscribe-site/fonts/ibm-plex-mono-700.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	/* Surfaces, twilight ramp (Dim Grey), read dark end first */
+	--void: #111213;
+	--raised: #181a1b;
+	--raised-2: #212425;
+	--hairline: #313435;
+	--hairline-soft: #26292a;
+
+	/* Text, twilight ramp, light end */
+	--ink: #f2f2f3;
+	--ink-soft: #cacdce;
+	--ink-muted: #7a8185;
+	--ink-faint: #494d50;
+
+	/* Accents, exactly the app's brand/bell/navy roles */
+	--signal: #669966;
+	--signal-high: #a3c2a3;
+	--signal-low: #293d29;
+	--alert: #fe011b;
+	--alert-low: #330005;
+	--tertiary: #a49fc6;
+
+	--font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+	--content-width: 72rem;
+	--measure: 38rem;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--void);
+	color-scheme: dark;
+}
+
+body {
+	margin: 0;
+	background: var(--void);
+	color: var(--ink-soft);
+	font-family: var(--font-body);
+	font-size: 1rem;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+	font-family: var(--font-mono);
+	color: var(--ink);
+	line-height: 1.15;
+	margin: 0;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+p {
+	margin: 0;
+	max-width: var(--measure);
+}
+
+a {
+	color: inherit;
+}
+
+code, .mono {
+	font-family: var(--font-mono);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+::selection {
+	background: var(--signal-low);
+	color: var(--ink);
+}
+
+:focus-visible {
+	outline: 2px solid var(--signal-high);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
