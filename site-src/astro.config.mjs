@@ -5,9 +5,10 @@ import { defineConfig } from 'astro/config';
 // and served straight from GitHub Pages ("Deploy from a branch", /docs
 // folder on main), matching the redscribe-docs repo's setup.
 //
-// Hosted at the custom domain www.redscribe.app (see public/CNAME), so no
-// base path is needed, this serves at the domain root.
+// Hosted at the custom domain redscribe.app (see public/CNAME), so no base
+// path is needed, this serves at the domain root. www.redscribe.app
+// redirects here automatically, GitHub Pages handles that.
 export default defineConfig({
-	site: 'https://www.redscribe.app/',
+	site: 'https://redscribe.app/',
 	outDir: '../docs',
 });
