@@ -52,7 +52,7 @@ const capabilities = [
 						<a class="btn btn--primary" href="https://redscribe-labs.github.io/redscribe-docs/getting-started/installation/">Read the docs</a>
 						<a class="btn btn--ghost" href="https://github.com/redscribe-labs/redscribe">View source</a>
 					</div>
-					<p class="hero__note">Source-available. Free for personal and noncommercial use.</p>
+					<p class="hero__note">Source-available. Free for everyone, commercial use included, for the first year.</p>
 				</div>
 				<div class="hero__visual">
 					<FindingCard />
@@ -98,14 +98,14 @@ const capabilities = [
 			</section>
 
 			<section class="license">
-				<h2>One license, every feature.</h2>
+				<h2>Commercial use is free right now.</h2>
 				<p>
-					RedScribe is source-available, not open source by the OSI&rsquo;s
-					own definition. It&rsquo;s free for personal and community use
-					under the PolyForm Noncommercial License. Running it at a
-					for-profit consultancy needs a flat-fee commercial license, no
-					per-seat pricing. Nothing about the feature set changes either
-					way.
+					RedScribe ships every feature on every instance, no exceptions.
+					Personal and noncommercial use stays free permanently, under the
+					PolyForm Noncommercial License. As a kickstart for the community,
+					commercial use is free too, for up to a year: email <a class="text-link text-link--inline" href="mailto:redscribe.maintainer@proton.me">redscribe.maintainer@proton.me</a> for a commercial license key at no cost. Priced tiers arrive once
+					RedScribe has been proven at the scale real enterprise engagements
+					demand.
 				</p>
 				<a class="text-link" href="https://redscribe-labs.github.io/redscribe-docs/admin/licensing/">How licensing works</a>
 			</section>
@@ -329,6 +329,11 @@ const capabilities = [
 				color: var(--signal-high);
 				text-decoration: none;
 				border-bottom: 1px solid var(--signal-low);
+			}
+			.text-link--inline {
+				display: inline;
+				margin-top: 0;
+				font-size: inherit;
 			}
 			.text-link:hover {
 				border-color: var(--signal-high);
