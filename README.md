@@ -45,8 +45,8 @@ npm run preview   # serve the build locally to check it before committing
 ## Design
 
 Every color is a real token from the app's own `COLOR_SCHEME.md`, and both
-typefaces (Inter, IBM Plex Mono) are the app's own self-hosted fonts, copied
-in under `site-src/public/fonts/`. The logo is an original mark: three
+typefaces (Plus Jakarta Sans, JetBrains Mono) are the app's own self-hosted
+fonts, copied in under `site-src/public/fonts/`. The logo is an original mark: three
 redaction bars of decreasing width, the top one in the app's signal green,
 meant to read as "a report with one visible finding" without being a
 literal letterform. See `site-src/src/components/` for the mark's SVG and

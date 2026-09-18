@@ -3,55 +3,55 @@
  *
  * Every color is a real token from the app's own COLOR_SCHEME.md, not a
  * new palette invented for this page. Two typefaces, both the exact
- * families the app itself ships and self-hosts: IBM Plex Mono for
- * headlines and data, Inter for body copy.
+ * families the app itself ships and self-hosts: JetBrains Mono for
+ * headlines and data, Plus Jakarta Sans for body copy.
  */
 
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/inter-400.woff2') format('woff2');
+	font-family: 'Plus Jakarta Sans';
+	src: url('/fonts/plus-jakarta-sans-400.woff2') format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/inter-500.woff2') format('woff2');
+	font-family: 'Plus Jakarta Sans';
+	src: url('/fonts/plus-jakarta-sans-500.woff2') format('woff2');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/inter-600.woff2') format('woff2');
+	font-family: 'Plus Jakarta Sans';
+	src: url('/fonts/plus-jakarta-sans-600.woff2') format('woff2');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/inter-700.woff2') format('woff2');
+	font-family: 'Plus Jakarta Sans';
+	src: url('/fonts/plus-jakarta-sans-700.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'IBM Plex Mono';
-	src: url('/fonts/ibm-plex-mono-500.woff2') format('woff2');
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrains-mono-500.woff2') format('woff2');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'IBM Plex Mono';
-	src: url('/fonts/ibm-plex-mono-600.woff2') format('woff2');
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrains-mono-600.woff2') format('woff2');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'IBM Plex Mono';
-	src: url('/fonts/ibm-plex-mono-700.woff2') format('woff2');
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrains-mono-700.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
@@ -79,8 +79,8 @@
 	--alert-low: #330005;
 	--tertiary: #a49fc6;
 
-	--font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-	--font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+	--font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
 	--content-width: 72rem;
 	--measure: 38rem;
