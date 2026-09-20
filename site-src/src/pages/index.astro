@@ -3,6 +3,13 @@ import Header from '../components/Header.astro';
 import FindingCard from '../components/FindingCard.astro';
 import '../styles/global.css';
 
+const complianceFacts = [
+	{ label: 'Encryption', value: 'AES-256-GCM, per engagement' },
+	{ label: 'Audit trail', value: 'Hash-chained, every request' },
+	{ label: 'MFA', value: 'Required by default' },
+	{ label: 'Audit retention', value: '6-year default' },
+];
+
 const capabilities = [
 	{
 		label: 'Engagements & findings',
@@ -22,7 +29,7 @@ const capabilities = [
 	{
 		label: 'Security',
 		accent: 'var(--alert)',
-		body: 'AES-256-GCM encryption per engagement, TOTP MFA required on every local account, and an append-only, hash-chained audit log covering every request, not only the ones that change something.',
+		body: 'AES-256-GCM encryption per engagement, TOTP MFA required by default on every local account, and an append-only, hash-chained audit log covering every request, not only the ones that change something.',
 	},
 	{
 		label: 'Administration',
@@ -124,6 +131,35 @@ const capabilities = [
 								</li>
 							))}
 						</ul>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--void band--seam">
+				<div class="wrap">
+					<section class="compliance">
+						<div class="compliance__text">
+							<h2 class="section-heading">Defaults for engagements that can't cut corners</h2>
+							<p>
+								A pentest firm's own findings are sensitive by nature, and some
+								clients — hospitals, banks, anyone already living under a
+								compliance regime — raise the bar further. These defaults were
+								chosen with that in mind from the start, not bolted on after.
+							</p>
+							<p class="compliance__disclaimer">
+								None of this makes RedScribe &ldquo;compliant&rdquo; by itself —
+								that's always down to whoever operates it. It means the technical
+								foundation doesn't fight you when you need one.
+							</p>
+						</div>
+						<dl class="compliance__facts">
+							{complianceFacts.map((fact) => (
+								<div class="compliance__fact">
+									<dt>{fact.label}</dt>
+									<dd class="mono">{fact.value}</dd>
+								</div>
+							))}
+						</dl>
 					</section>
 				</div>
 			</div>
@@ -369,6 +405,11 @@ const capabilities = [
 				border: 1px solid var(--hairline-soft);
 				border-radius: 10px;
 				overflow: hidden;
+				transition: border-color 200ms ease, transform 200ms ease;
+			}
+			.capability:hover {
+				border-color: var(--hairline);
+				transform: translateY(-2px);
 			}
 			.capability::before {
 				content: '';
@@ -429,6 +470,61 @@ const capabilities = [
 				width: 1.75rem;
 				height: 1px;
 				background: var(--hairline);
+			}
+
+			.band--seam {
+				border-top: 1px solid var(--hairline-soft);
+			}
+
+			.compliance {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+				gap: 3.5rem;
+				padding: 5rem 0;
+				align-items: start;
+			}
+
+			.compliance__text p {
+				margin-top: 1.1rem;
+				font-size: 1.0625rem;
+			}
+			.compliance__text p:first-of-type {
+				margin-top: 1.4rem;
+			}
+
+			.compliance__disclaimer {
+				color: var(--ink-muted);
+				font-size: 0.9375rem !important;
+			}
+
+			.compliance__facts {
+				margin: 0;
+				padding-top: 0.25rem;
+				border-top: 1px solid var(--hairline-soft);
+			}
+
+			.compliance__fact {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 1rem;
+				padding: 0.95rem 0;
+				border-bottom: 1px solid var(--hairline-soft);
+			}
+			.compliance__fact:last-child {
+				border-bottom: none;
+			}
+
+			.compliance__fact dt {
+				font-size: 0.875rem;
+				color: var(--ink-muted);
+			}
+
+			.compliance__fact dd {
+				margin: 0;
+				font-size: 0.875rem;
+				color: var(--ink);
+				text-align: right;
 			}
 
 			.license {
@@ -557,6 +653,14 @@ const capabilities = [
 				}
 				.capability:nth-child(5) {
 					grid-column: 1;
+				}
+				.compliance {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+				.compliance__facts {
+					border-top: none;
+					padding-top: 0;
 				}
 			}
 		</style>

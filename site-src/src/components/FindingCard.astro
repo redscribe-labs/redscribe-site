@@ -22,9 +22,9 @@
 			<dt>Status</dt>
 			<dd class="mono">Open</dd>
 		</div>
-		<div>
+		<div class="finding-card__meta-wide">
 			<dt>Classification</dt>
-			<dd>A01:2021&#8209;Broken&nbsp;Access&nbsp;Control</dd>
+			<dd>A01:2021&#8209;Broken Access Control</dd>
 		</div>
 	</dl>
 	<div class="finding-card__foot">
@@ -86,11 +86,15 @@
 
 	.finding-card__meta {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 0.75rem;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem 1rem;
 		margin: 0;
 		padding-top: 0.9rem;
 		border-top: 1px solid var(--hairline-soft);
+	}
+
+	.finding-card__meta-wide {
+		grid-column: 1 / -1;
 	}
 
 	.finding-card__meta dt {

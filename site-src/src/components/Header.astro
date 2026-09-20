@@ -1,27 +1,53 @@
 ---
 ---
 
-<header class="site-header">
-	<a href="/" class="wordmark">
-		<svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
-			<rect width="40" height="40" rx="9" fill="#111213"/>
-			<rect x="9" y="11" width="22" height="4" rx="2" fill="#669966"/>
-			<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
-			<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
-		</svg>
-		<span class="mono">RedScribe</span>
-	</a>
-	<nav aria-label="Primary">
-		<a href="https://docs.redscribe.app/">Docs</a>
-		<a href="https://github.com/redscribe-labs/redscribe">GitHub</a>
-	</nav>
-</header>
+<div class="site-header-bar" data-header>
+	<header class="site-header">
+		<a href="/" class="wordmark">
+			<svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
+				<rect width="40" height="40" rx="9" fill="#111213"/>
+				<rect x="9" y="11" width="22" height="4" rx="2" fill="#669966"/>
+				<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
+				<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
+			</svg>
+			<span class="mono">RedScribe</span>
+		</a>
+		<nav aria-label="Primary">
+			<a href="https://docs.redscribe.app/">Docs</a>
+			<a href="https://github.com/redscribe-labs/redscribe">GitHub</a>
+		</nav>
+	</header>
+</div>
+
+<script>
+	const bar = document.querySelector('[data-header]');
+	if (bar) {
+		const setScrolled = () => bar.classList.toggle('is-scrolled', window.scrollY > 8);
+		setScrolled();
+		window.addEventListener('scroll', setScrolled, { passive: true });
+	}
+</script>
 
 <style>
+	.site-header-bar {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		background: color-mix(in srgb, var(--void) 82%, transparent);
+		border-bottom: 1px solid transparent;
+		transition: border-color 200ms ease, background 200ms ease;
+	}
+	.site-header-bar.is-scrolled {
+		background: color-mix(in srgb, var(--void) 92%, transparent);
+		border-bottom-color: var(--hairline-soft);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+
 	.site-header {
 		max-width: var(--content-width);
 		margin: 0 auto;
-		padding: 1.75rem 1.5rem 0;
+		padding: 1.75rem 1.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
