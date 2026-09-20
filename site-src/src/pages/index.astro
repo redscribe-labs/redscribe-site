@@ -1,0 +1,668 @@
+---
+import Header from '../components/Header.astro';
+import FindingCard from '../components/FindingCard.astro';
+import '../styles/global.css';
+
+const complianceFacts = [
+	{ label: 'Encryption', value: 'AES-256-GCM, per engagement' },
+	{ label: 'Audit trail', value: 'Hash-chained, every request' },
+	{ label: 'MFA', value: 'Required by default' },
+	{ label: 'Audit retention', value: '6-year default' },
+];
+
+const capabilities = [
+	{
+		label: 'Engagements & findings',
+		accent: 'var(--signal)',
+		body: 'An engagement moves through a real status lifecycle with membership and scope-change approval. Findings carry CVSS v3.1 and v4.0 scoring, move through a draft, review, and QA workflow, and can be raised by hand, pulled from a shared vulnerability catalogue, or imported straight from Nmap, Burp Suite, or Nuclei output.',
+	},
+	{
+		label: 'Reporting',
+		accent: 'var(--tertiary)',
+		body: 'One shared model drives every export, so Markdown, HTML, PDF, and Word all render the same report. Word export fills in a .docx template you design yourself, styled with your own document’s named styles, not a generic generated layout.',
+	},
+	{
+		label: 'Client portal',
+		accent: 'var(--ink-soft)',
+		body: 'Client accounts log in to a deliberately narrow view: their own released engagements, and within them, only findings that have actually cleared QA. Nothing else is editable, nothing else is visible.',
+	},
+	{
+		label: 'Security',
+		accent: 'var(--alert)',
+		body: 'AES-256-GCM encryption per engagement, TOTP MFA required by default on every local account, and an append-only, hash-chained audit log covering every request, not only the ones that change something.',
+	},
+	{
+		label: 'Administration',
+		accent: 'var(--signal-high)',
+		body: 'Roles and permissions are fully dynamic, not fixed tiers. Backup and restore runs encrypted and server-side, with an account-change diff shown before anything live gets overwritten.',
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>RedScribe</title>
+		<meta name="description" content="Self-hosted engagement, finding, checklist, and report management for penetration testing teams." />
+	</head>
+	<body>
+		<div class="band band--void">
+			<div class="wrap">
+				<Header />
+			</div>
+		</div>
+
+		<main>
+			<div class="band band--void band--hero">
+				<svg class="hero__mark" viewBox="0 0 40 40" aria-hidden="true">
+					<rect x="9" y="11" width="22" height="4" rx="2" />
+					<rect x="9" y="18" width="15" height="4" rx="2" />
+					<rect x="9" y="25" width="9" height="4" rx="2" />
+				</svg>
+				<div class="wrap">
+					<section class="hero">
+						<div class="hero__text">
+							<p class="badge">
+								<span class="badge__dot" aria-hidden="true"></span>
+								Commercial use free for one year
+							</p>
+							<h1>Run the whole engagement,<br />not just the report.</h1>
+							<p class="hero__sub">
+								RedScribe is self-hosted engagement, finding, checklist, and
+								report management for penetration testing teams who keep
+								their own data on their own infrastructure.
+							</p>
+							<div class="hero__actions">
+								<a class="btn btn--primary" href="https://docs.redscribe.app/getting-started/installation/">Read the docs</a>
+								<a class="btn btn--ghost" href="https://github.com/redscribe-labs/redscribe">View source</a>
+							</div>
+							<p class="hero__note">Source-available. Free forever for personal and noncommercial use.</p>
+						</div>
+						<div class="hero__visual">
+							<FindingCard />
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--void band--tight">
+				<div class="wrap">
+					<section class="flow">
+						<p class="flow__text">
+							One engagement moves through one tool. Create it, run your
+							checklist, log findings against it, review and QA them, then
+							generate the report your client actually reads, in the format
+							they asked for.
+						</p>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--raised">
+				<div class="wrap">
+					<section class="capabilities" aria-label="Capabilities">
+						<h2 class="section-heading">What it actually runs</h2>
+						<ul class="capabilities__grid">
+							{capabilities.map((item) => (
+								<li class="capability" style={`--card-accent: ${item.accent}`}>
+									<h3 class="capability__label mono">{item.label}</h3>
+									<p class="capability__body">{item.body}</p>
+									{item.label === 'Security' && (
+										<div class="chain" role="img" aria-label="A hash chain diagram: three audit log entries, each one's hash computed from its own fields chained onto the previous entry's hash">
+											<div class="chain__node">
+												<span class="chain__hash mono">a13f&hellip;9c02</span>
+												<span class="chain__caption">#4,118</span>
+											</div>
+											<span class="chain__link" aria-hidden="true"></span>
+											<div class="chain__node">
+												<span class="chain__hash mono">6e21&hellip;7bd4</span>
+												<span class="chain__caption">#4,119</span>
+											</div>
+											<span class="chain__link" aria-hidden="true"></span>
+											<div class="chain__node chain__node--current">
+												<span class="chain__hash mono">f048&hellip;1a3e</span>
+												<span class="chain__caption">current</span>
+											</div>
+										</div>
+									)}
+								</li>
+							))}
+						</ul>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--void band--seam">
+				<div class="wrap">
+					<section class="compliance">
+						<div class="compliance__text">
+							<h2 class="section-heading">Defaults for engagements that can't cut corners</h2>
+							<p>
+								A pentest firm's own findings are sensitive by nature, and some
+								clients — hospitals, banks, anyone already living under a
+								compliance regime — raise the bar further. These defaults were
+								chosen with that in mind from the start, not bolted on after.
+							</p>
+							<p class="compliance__disclaimer">
+								None of this makes RedScribe &ldquo;compliant&rdquo; by itself —
+								that's always down to whoever operates it. It means the technical
+								foundation doesn't fight you when you need one.
+							</p>
+						</div>
+						<dl class="compliance__facts">
+							{complianceFacts.map((fact) => (
+								<div class="compliance__fact">
+									<dt>{fact.label}</dt>
+									<dd class="mono">{fact.value}</dd>
+								</div>
+							))}
+						</dl>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--accent">
+				<div class="wrap">
+					<section class="license">
+						<h2>Commercial use is free right now.</h2>
+						<p>
+							RedScribe ships every feature on every instance, no exceptions.
+							Personal and noncommercial use stays free permanently, under
+							the PolyForm Noncommercial License. As a kickstart for the
+							community, commercial use is free too, for up to a year: email <a class="text-link text-link--accent" href="mailto:redscribe.maintainer@proton.me">redscribe.maintainer@proton.me</a> for a commercial license key at no cost. Priced
+							tiers arrive once RedScribe has been proven at the scale real
+							enterprise engagements demand.
+						</p>
+						<a class="text-link text-link--accent" href="https://docs.redscribe.app/admin/licensing/">How licensing works</a>
+					</section>
+				</div>
+			</div>
+
+			<div class="band band--void">
+				<div class="wrap">
+					<section class="install">
+						<h2 class="section-heading">Four ways to run it</h2>
+						<p class="install__body">
+							Docker Compose with automated Tailscale HTTPS, your own TLS
+							certificate, plain HTTP on a trusted network, or local
+							development without Docker at all.
+						</p>
+						<pre class="install__snippet mono"><code>docker compose --profile tailscale up -d --build</code></pre>
+						<a class="text-link" href="https://docs.redscribe.app/getting-started/installation/">Installation guide</a>
+					</section>
+				</div>
+			</div>
+		</main>
+
+		<div class="band band--void">
+			<div class="wrap">
+				<footer class="site-footer">
+					<div class="site-footer__row">
+						<a href="/" class="wordmark">
+							<svg viewBox="0 0 40 40" width="22" height="22" aria-hidden="true">
+								<rect width="40" height="40" rx="9" fill="#111213"/>
+								<rect x="9" y="11" width="22" height="4" rx="2" fill="#669966"/>
+								<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
+								<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
+							</svg>
+							<span class="mono">RedScribe</span>
+						</a>
+						<nav aria-label="Footer">
+							<a href="https://docs.redscribe.app/">Docs</a>
+							<a href="https://github.com/redscribe-labs/redscribe">GitHub</a>
+							<a href="https://docs.redscribe.app/admin/licensing/">License</a>
+							<a href="https://github.com/redscribe-labs/redscribe/blob/main/.github/SECURITY.md">Security policy</a>
+						</nav>
+					</div>
+					<p class="site-footer__meta mono">v0.1.0-alpha.1, early alpha, expect rough edges</p>
+				</footer>
+			</div>
+		</div>
+
+		<style>
+			.band {
+				width: 100%;
+			}
+			.band--raised {
+				background: var(--raised);
+			}
+			.band--accent {
+				background: var(--signal);
+			}
+			.band--tight .wrap {
+				padding-top: 0;
+			}
+
+			.wrap {
+				max-width: var(--content-width);
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			.band--hero {
+				position: relative;
+				overflow: clip;
+			}
+
+			.hero__mark {
+				position: absolute;
+				top: 50%;
+				right: -6rem;
+				width: 34rem;
+				height: 34rem;
+				transform: translateY(-50%) rotate(-6deg);
+				opacity: 0.05;
+				pointer-events: none;
+			}
+			.hero__mark rect:nth-child(1) { fill: var(--signal); }
+			.hero__mark rect:nth-child(2) { fill: var(--ink-soft); }
+			.hero__mark rect:nth-child(3) { fill: var(--ink-soft); }
+
+			.hero {
+				position: relative;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+				gap: 3rem;
+				align-items: center;
+				padding: 6.5rem 0 6.5rem;
+			}
+
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.55rem;
+				margin: 0 0 1.5rem;
+				padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+				border: 1px solid var(--signal-low);
+				border-radius: 999px;
+				background: rgba(102, 153, 102, 0.08);
+				font-size: 0.8125rem;
+				color: var(--signal-high);
+			}
+			.badge__dot {
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: var(--signal-high);
+			}
+
+			.hero__text h1 {
+				font-size: clamp(2.6rem, 5vw, 4rem);
+				max-width: 16ch;
+				animation: rise 700ms ease both;
+			}
+
+			.hero__sub {
+				margin-top: 1.6rem;
+				font-size: 1.1875rem;
+				color: var(--ink-soft);
+				max-width: 32rem;
+				animation: rise 700ms ease 80ms both;
+			}
+
+			.hero__actions {
+				display: flex;
+				gap: 0.9rem;
+				margin-top: 2.4rem;
+				animation: rise 700ms ease 140ms both;
+			}
+
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				font-family: var(--font-mono);
+				font-size: 0.9375rem;
+				padding: 0.85rem 1.6rem;
+				border-radius: 7px;
+				text-decoration: none;
+				border: 1px solid transparent;
+				transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+			}
+
+			.btn--primary {
+				background: var(--signal);
+				color: #0e150e;
+				font-weight: 600;
+			}
+			.btn--primary:hover {
+				background: var(--signal-high);
+				transform: translateY(-1px);
+			}
+
+			.btn--ghost {
+				border-color: var(--hairline);
+				color: var(--ink-soft);
+			}
+			.btn--ghost:hover {
+				border-color: var(--ink-muted);
+				color: var(--ink);
+			}
+
+			.hero__note {
+				margin-top: 1.5rem;
+				font-size: 0.8125rem;
+				color: var(--ink-muted);
+				animation: rise 700ms ease 180ms both;
+			}
+
+			.hero__visual {
+				display: flex;
+				justify-content: center;
+				animation: rise 700ms ease 220ms both;
+			}
+
+			@keyframes rise {
+				from {
+					opacity: 0;
+					transform: translateY(14px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.flow {
+				border-top: 1px solid var(--hairline-soft);
+				padding: 3rem 0;
+			}
+
+			.flow__text {
+				max-width: 46rem;
+				font-size: 1.1875rem;
+				color: var(--ink);
+				line-height: 1.55;
+			}
+
+			.section-heading {
+				font-size: 1.75rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.capabilities {
+				padding: 5rem 0;
+			}
+
+			.capabilities__grid {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.5rem;
+			}
+			.capability:nth-child(5) {
+				grid-column: 1 / -1;
+			}
+
+			.capability {
+				position: relative;
+				padding: 1.75rem 1.75rem 1.9rem;
+				background: var(--void);
+				border: 1px solid var(--hairline-soft);
+				border-radius: 10px;
+				overflow: hidden;
+				transition: border-color 200ms ease, transform 200ms ease;
+			}
+			.capability:hover {
+				border-color: var(--hairline);
+				transform: translateY(-2px);
+			}
+			.capability::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: var(--card-accent);
+			}
+
+			.capability__label {
+				font-size: 1.0625rem;
+				color: var(--ink);
+			}
+
+			.capability__body {
+				margin-top: 0.85rem;
+				color: var(--ink-soft);
+			}
+
+			.chain {
+				margin-top: 1.5rem;
+				display: flex;
+				align-items: center;
+				gap: 0;
+				flex-wrap: wrap;
+			}
+
+			.chain__node {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.35rem;
+				padding: 0.7rem 0.9rem;
+				border: 1px solid var(--hairline);
+				border-radius: 8px;
+				background: var(--raised);
+			}
+			.chain__node--current {
+				border-color: var(--signal);
+			}
+
+			.chain__hash {
+				font-size: 0.78125rem;
+				color: var(--ink-soft);
+			}
+			.chain__node--current .chain__hash {
+				color: var(--signal-high);
+			}
+
+			.chain__caption {
+				font-size: 0.6875rem;
+				color: var(--ink-muted);
+			}
+
+			.chain__link {
+				width: 1.75rem;
+				height: 1px;
+				background: var(--hairline);
+			}
+
+			.band--seam {
+				border-top: 1px solid var(--hairline-soft);
+			}
+
+			.compliance {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+				gap: 3.5rem;
+				padding: 5rem 0;
+				align-items: start;
+			}
+
+			.compliance__text p {
+				margin-top: 1.1rem;
+				font-size: 1.0625rem;
+			}
+			.compliance__text p:first-of-type {
+				margin-top: 1.4rem;
+			}
+
+			.compliance__disclaimer {
+				color: var(--ink-muted);
+				font-size: 0.9375rem !important;
+			}
+
+			.compliance__facts {
+				margin: 0;
+				padding-top: 0.25rem;
+				border-top: 1px solid var(--hairline-soft);
+			}
+
+			.compliance__fact {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 1rem;
+				padding: 0.95rem 0;
+				border-bottom: 1px solid var(--hairline-soft);
+			}
+			.compliance__fact:last-child {
+				border-bottom: none;
+			}
+
+			.compliance__fact dt {
+				font-size: 0.875rem;
+				color: var(--ink-muted);
+			}
+
+			.compliance__fact dd {
+				margin: 0;
+				font-size: 0.875rem;
+				color: var(--ink);
+				text-align: right;
+			}
+
+			.license {
+				padding: 5rem 0;
+				max-width: 40rem;
+			}
+			.license h2 {
+				font-size: 2rem;
+				color: #0e150e;
+			}
+			.license p {
+				margin-top: 1.2rem;
+				color: #1c2a1c;
+				font-size: 1.0625rem;
+			}
+
+			.install {
+				padding: 5rem 0;
+				max-width: 40rem;
+			}
+			.install h2 {
+				margin-bottom: 0;
+			}
+			.install__body {
+				margin-top: 1.1rem;
+				color: var(--ink-soft);
+			}
+
+			.text-link {
+				display: inline-block;
+				margin-top: 1.3rem;
+				font-size: 0.9375rem;
+				color: var(--signal-high);
+				text-decoration: none;
+				border-bottom: 1px solid var(--signal-low);
+			}
+			.text-link--inline {
+				display: inline;
+				margin-top: 0;
+				font-size: inherit;
+			}
+			.text-link:hover {
+				border-color: var(--signal-high);
+			}
+
+			.text-link--accent {
+				color: #0e150e;
+				font-weight: 600;
+				border-bottom-color: rgba(14, 21, 14, 0.35);
+			}
+			.text-link--accent:hover {
+				border-bottom-color: #0e150e;
+			}
+
+			.install__snippet {
+				margin: 1.5rem 0 0;
+				padding: 1rem 1.2rem;
+				background: var(--raised);
+				border: 1px solid var(--hairline);
+				border-radius: 8px;
+				font-size: 0.875rem;
+				color: var(--signal-high);
+				overflow-x: auto;
+			}
+
+			.site-footer {
+				padding: 2.5rem 0 3.5rem;
+				border-top: 1px solid var(--hairline-soft);
+			}
+
+			.site-footer__row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 1.5rem;
+			}
+
+			.site-footer .wordmark {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.55rem;
+				text-decoration: none;
+				color: var(--ink-soft);
+				font-size: 0.9375rem;
+			}
+			.site-footer .wordmark svg {
+				border-radius: 5px;
+			}
+
+			.site-footer nav {
+				display: flex;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+			}
+			.site-footer nav a {
+				color: var(--ink-muted);
+				text-decoration: none;
+				font-size: 0.875rem;
+			}
+			.site-footer nav a:hover {
+				color: var(--ink-soft);
+			}
+
+			.site-footer__meta {
+				margin-top: 1.75rem;
+				font-size: 0.75rem;
+				color: var(--ink-faint);
+			}
+
+			@media (max-width: 56rem) {
+				.hero {
+					grid-template-columns: 1fr;
+					padding-top: 4rem;
+				}
+				.hero__visual {
+					justify-content: flex-start;
+				}
+				.hero__mark {
+					width: 20rem;
+					height: 20rem;
+					right: -4rem;
+				}
+				.capabilities__grid {
+					grid-template-columns: 1fr;
+				}
+				.capability:nth-child(5) {
+					grid-column: 1;
+				}
+				.compliance {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+				.compliance__facts {
+					border-top: none;
+					padding-top: 0;
+				}
+			}
+		</style>
+	</body>
+</html>
