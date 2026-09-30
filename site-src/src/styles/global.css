@@ -58,32 +58,60 @@
 }
 
 :root {
-	/* Surfaces, twilight ramp (Dim Grey), read dark end first */
-	--void: #111213;
-	--raised: #181a1b;
-	--raised-2: #212425;
-	--hairline: #313435;
+	/* Every value below is a token from the app's COLOR_SCHEME.md (tailwind-src/input.css). */
+
+	/* twilight (Dim Grey): surfaces, dark end first */
+	--void: #111213;        /* twilight-950 */
+	--raised: #181a1b;      /* twilight-900 */
+	--raised-2: #212425;    /* between 900 and 800, card hover */
+	--hairline: #313435;    /* twilight-800 */
 	--hairline-soft: #26292a;
 
-	/* Text, twilight ramp, light end */
-	--ink: #f2f2f3;
-	--ink-soft: #cacdce;
-	--ink-muted: #7a8185;
-	--ink-faint: #494d50;
+	/* twilight: text, light end */
+	--ink: #f2f2f3;         /* twilight-50 */
+	--ink-soft: #cacdce;    /* twilight-200 */
+	--ink-muted: #959a9d;   /* twilight-400 */
+	--ink-faint: #62676a;   /* twilight-600 */
 
-	/* Accents, exactly the app's brand/bell/navy roles */
-	--signal: #669966;
-	--signal-high: #a3c2a3;
-	--signal-low: #293d29;
-	--alert: #fe011b;
+	/* brand (Onyx): primary actions, links, focus */
+	--brand-200: #c2d6c2;
+	--brand-300: #a3c2a3;
+	--brand-400: #85ad85;
+	--brand-500: #669966;
+	--brand-700: #3d5c3d;
+	--brand-800: #293d29;
+	--brand-950: #0e150e;
+
+	/* bell (Brick Ember): secondary accent, used sparingly */
+	--bell-300: #fe6776;
+	--bell-500: #fe011b;
+	--bell-800: #65010b;
+
+	/* navy (Ghost White): accent only */
+	--navy-300: #a49fc6;
+	--navy-500: #68609f;
+	--navy-800: #2a2640;
+
+	/* mist (Ash Grey): light airy tints */
+	--mist-300: #a7bebc;
+	--mist-500: #6c9390;
+	--mist-800: #2b3b3a;
+
+	/* Legacy aliases kept for components that still use them */
+	--signal: var(--brand-500);
+	--signal-high: var(--brand-300);
+	--signal-low: var(--brand-800);
+	--alert: var(--bell-500);
 	--alert-low: #330005;
-	--tertiary: #a49fc6;
+	--tertiary: var(--navy-300);
 
 	--font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-	--content-width: 72rem;
+	--content-width: 76rem;
 	--measure: 38rem;
+	--radius-lg: 20px;
+	--radius-md: 14px;
 }
 
 * {
@@ -107,12 +135,17 @@ body {
 }
 
 h1, h2, h3, h4 {
-	font-family: var(--font-mono);
+	font-family: var(--font-body);
 	color: var(--ink);
-	line-height: 1.15;
+	line-height: 1.1;
 	margin: 0;
-	font-weight: 600;
-	letter-spacing: -0.01em;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
 }
 
 p {
@@ -155,4 +188,74 @@ code, .mono {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* ---------------------------------------------------------------- shared UI */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1.4rem;
+	border-radius: 999px;
+	font-family: var(--font-body);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1;
+	text-decoration: none;
+	border: 1px solid transparent;
+	transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+	white-space: nowrap;
+}
+.btn:hover {
+	transform: translateY(-1px);
+}
+.btn--primary {
+	background: var(--brand-400);
+	color: var(--brand-950);
+}
+.btn--primary:hover {
+	background: var(--brand-300);
+}
+.btn--ghost {
+	background: color-mix(in srgb, var(--raised) 70%, transparent);
+	border-color: var(--hairline);
+	color: var(--ink);
+}
+.btn--ghost:hover {
+	border-color: var(--ink-faint);
+	background: var(--raised-2);
+}
+.btn--sm {
+	padding: 0.6rem 1rem;
+	font-size: 0.875rem;
+}
+
+.eyebrow {
+	display: inline-block;
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--brand-300);
+}
+
+.grad-text {
+	background: linear-gradient(100deg, var(--brand-300) 0%, var(--mist-300) 55%, var(--navy-300) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* Scroll reveal: only hides content once JS has confirmed it can reveal it again. */
+.js .reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity 700ms cubic-bezier(.2, .7, .2, 1), transform 700ms cubic-bezier(.2, .7, .2, 1);
+}
+.js .reveal.is-in {
+	opacity: 1;
+	transform: none;
 }

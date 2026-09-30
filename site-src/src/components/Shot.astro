@@ -1,0 +1,98 @@
+---
+// A product screenshot from /public/screenshots. Full frames are native 1920x1080 captures with a
+// 960px half-size variant; panel crops (single) are native-size cuts from a 1920x1080 frame.
+interface Props {
+	name: string;
+	alt: string;
+	width: number;
+	height: number;
+	sizes?: string;
+	/** Draw a browser-window frame around it. */
+	frame?: boolean;
+	/** Only one native-size file exists (panel crops). */
+	single?: boolean;
+	eager?: boolean;
+	path?: string;
+	class?: string;
+}
+
+const {
+	name, alt, width, height, sizes = '(min-width: 76rem) 44rem, 92vw',
+	frame = true, single = false, eager = false, path = 'redscribe.internal', class: className,
+} = Astro.props;
+const src = single ? `/screenshots/${name}.webp` : `/screenshots/${name}-1920.webp`;
+const srcset = single ? undefined : `/screenshots/${name}-960.webp 960w, /screenshots/${name}-1920.webp 1920w`;
+---
+
+<figure class:list={['shot', { 'shot--frame': frame }, className]}>
+	{frame && (
+		<div class="shot__bar" aria-hidden="true">
+			<span class="shot__dots"><i></i><i></i><i></i></span>
+			<span class="shot__url mono">{path}</span>
+		</div>
+	)}
+	<img
+		src={src}
+		srcset={srcset}
+		sizes={single ? undefined : sizes}
+		width={width}
+		height={height}
+		alt={alt}
+		loading={eager ? 'eager' : 'lazy'}
+		fetchpriority={eager ? 'high' : undefined}
+		decoding="async"
+	/>
+</figure>
+
+<style>
+	.shot {
+		margin: 0;
+	}
+	.shot img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.shot--frame {
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		background: var(--raised);
+		border: 1px solid var(--hairline);
+		box-shadow:
+			0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+			0 40px 90px -40px rgba(0, 0, 0, 0.85);
+	}
+	.shot__bar {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.6rem 0.9rem;
+		border-bottom: 1px solid var(--hairline-soft);
+		background: var(--raised);
+	}
+	.shot__dots {
+		display: inline-flex;
+		gap: 0.4rem;
+	}
+	.shot__dots i {
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 50%;
+		background: var(--hairline);
+	}
+	.shot__url {
+		flex: 1;
+		min-width: 0;
+		max-width: 22rem;
+		margin: 0 auto;
+		padding: 0.2rem 0.8rem;
+		border-radius: 999px;
+		background: var(--void);
+		color: var(--ink-faint);
+		font-size: 0.72rem;
+		text-align: center;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+</style>

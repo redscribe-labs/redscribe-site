@@ -1,21 +1,33 @@
 ---
+const links = [
+	{ href: '#features', label: 'Features' },
+	{ href: '#reporting', label: 'Reporting' },
+	{ href: '#security', label: 'Security' },
+	{ href: '#license', label: 'Pricing' },
+	{ href: 'https://docs.redscribe.app/', label: 'Docs' },
+];
 ---
 
 <div class="site-header-bar" data-header>
 	<header class="site-header">
-		<a href="/" class="wordmark">
+		<a href="/" class="wordmark" aria-label="RedScribe home">
 			<svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true">
-				<rect width="40" height="40" rx="9" fill="#111213"/>
+				<rect width="40" height="40" rx="9" fill="#181a1b"/>
 				<rect x="9" y="11" width="22" height="4" rx="2" fill="#669966"/>
 				<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
 				<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
 			</svg>
 			<span class="mono">RedScribe</span>
 		</a>
-		<nav aria-label="Primary">
-			<a href="https://docs.redscribe.app/">Docs</a>
-			<a href="https://github.com/redscribe-labs/redscribe">GitHub</a>
+		<nav class="site-nav" aria-label="Primary">
+			{links.map((l) => <a href={l.href}>{l.label}</a>)}
 		</nav>
+		<div class="site-header__actions">
+			<a class="gh" href="https://github.com/redscribe-labs/redscribe" aria-label="RedScribe on GitHub">
+				<svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+			</a>
+			<a class="btn btn--primary btn--sm" href="https://docs.redscribe.app/getting-started/quickstart/">Get started</a>
+		</div>
 	</header>
 </div>
 
@@ -32,25 +44,24 @@
 	.site-header-bar {
 		position: sticky;
 		top: 0;
-		z-index: 20;
-		background: color-mix(in srgb, var(--void) 82%, transparent);
+		z-index: 50;
 		border-bottom: 1px solid transparent;
 		transition: border-color 200ms ease, background 200ms ease;
 	}
 	.site-header-bar.is-scrolled {
-		background: color-mix(in srgb, var(--void) 92%, transparent);
+		background: color-mix(in srgb, var(--void) 85%, transparent);
 		border-bottom-color: var(--hairline-soft);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(14px) saturate(140%);
+		-webkit-backdrop-filter: blur(14px) saturate(140%);
 	}
 
 	.site-header {
 		max-width: var(--content-width);
 		margin: 0 auto;
-		padding: 1.75rem 1.5rem;
+		padding: 1rem 1.5rem;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: 2rem;
 	}
 
 	.wordmark {
@@ -61,39 +72,52 @@
 		color: var(--ink);
 		font-size: 1rem;
 		font-weight: 600;
-		letter-spacing: 0.01em;
 	}
-
 	.wordmark svg {
 		flex: none;
-		border-radius: 6px;
+		border-radius: 7px;
+		box-shadow: inset 0 0 0 1px var(--hairline);
 	}
 
-	nav {
+	.site-nav {
 		display: flex;
-		gap: 1.75rem;
+		gap: 0.25rem;
+		margin-right: auto;
 	}
-
-	nav a {
+	.site-nav a {
 		text-decoration: none;
-		color: var(--ink-soft);
+		color: var(--ink-muted);
 		font-size: 0.9375rem;
-		border-bottom: 1px solid transparent;
-		padding-bottom: 2px;
-		transition: border-color 150ms ease, color 150ms ease;
+		font-weight: 500;
+		padding: 0.45rem 0.8rem;
+		border-radius: 999px;
+		transition: color 150ms ease, background 150ms ease;
 	}
-
-	nav a:hover {
+	.site-nav a:hover {
 		color: var(--ink);
-		border-color: var(--hairline);
+		background: var(--raised);
 	}
 
-	@media (max-width: 30rem) {
-		.site-header {
-			padding-top: 1.25rem;
-		}
-		nav {
-			gap: 1.1rem;
+	.site-header__actions {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-left: auto;
+	}
+	.gh {
+		display: inline-flex;
+		color: var(--ink-muted);
+		padding: 0.4rem;
+		border-radius: 999px;
+		transition: color 150ms ease;
+	}
+	.gh:hover {
+		color: var(--ink);
+	}
+
+	@media (max-width: 52rem) {
+		.site-nav {
+			display: none;
 		}
 	}
 </style>
