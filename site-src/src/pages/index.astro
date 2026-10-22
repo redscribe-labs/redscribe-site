@@ -20,19 +20,19 @@ const roles = [
 		who: 'For testers',
 		title: 'Less time in Word.',
 		body: 'Work the checklist, write findings with a built-in CVSS calculator, and pull in Nmap, Burp Suite, or Nuclei output. The report is generated from what you’ve already written.',
-		shot: { name: 'crop-findings-dark', w: 840, h: 282, show: 840, alt: 'An engagement’s findings list with severity, status, workflow stage, and assigned reviewer and QA' },
+		shot: { name: 'crop-findings-dark', w: 1160, h: 336, show: 840, alt: 'An engagement’s findings list with severity, status, workflow stage, CVSS score, and assigned reviewer and QA' },
 	},
 	{
 		who: 'For reviewers and QA',
 		title: 'A queue, not an inbox.',
 		body: 'Everything assigned to you, in one list. Comment on the exact sentence, request changes, or approve. Nothing reaches the client until QA says so.',
-		shot: { name: 'crop-queue-dark', w: 790, h: 329, show: 790, alt: 'My review queue: findings awaiting your review, with Draft and Changes Requested states' },
+		shot: { name: 'crop-queue-dark', w: 1024, h: 294, show: 790, alt: 'My review queue: findings waiting for your review, with Draft and Changes Requested states' },
 	},
 	{
 		who: 'For team leads',
 		title: 'Every engagement at a glance.',
 		body: 'Status across every engagement, who’s on each team, default reviewers and QA, scope-change approvals, and which drafts still have no reviewer.',
-		shot: { name: 'crop-leads-dark', w: 518, h: 384, show: 0, fit: true, alt: 'Recent engagements on the dashboard with each engagement’s status: In Progress, Delivered, QA, Closed, Awaiting Remediation Test' },
+		shot: { name: 'crop-leads-dark', w: 523, h: 304, show: 0, fit: true, alt: 'Active engagements on the home page, each with its status, stage progress, open findings, checklist coverage, and end date' },
 	},
 ];
 
@@ -62,14 +62,14 @@ const features = [
 		id: 'checklists',
 		eyebrow: '02 · Checklists',
 		title: 'Test methodically. See what’s left.',
-		body: 'Run OWASP WSTG or your own template against an engagement, as many runs as the scope needs. Every item records what was tested and links to the findings it raised, and RedScribe nudges you toward the checks you haven’t touched yet.',
+		body: 'Run OWASP WSTG or your own template against an engagement, as many runs as the scope needs. The posture view shows coverage by category at a glance: what passed, what raised a finding, what was blocked and why, and what’s still untested.',
 		points: [
-			'OWASP WSTG, or your own templates in JSON or CSV',
-			'Several independent runs per engagement',
-			'Nmap, Burp Suite, and Nuclei import straight to Draft findings',
+			'Coverage map per category, with blocked checks and their reasons',
+			'Each check records what was tested, who tested it, and when',
+			'Raise a finding straight from a check, or import Nmap, Burp Suite, and Nuclei results',
 		],
 		link: { href: `${DOCS}/user-guide/checklists/`, label: 'Checklists and scanner import' },
-		shot: { name: 'checklist-run-dark', alt: 'An OWASP WSTG checklist run with overall progress, suggested next checks, and per-item status', path: 'redscribe.internal/engagements/RS-UMB-0369/checklist' },
+		shot: { name: 'checklist-run-dark', alt: 'The testing posture page: coverage per category as a grid of outcomes, an outcome breakdown, and where the risk is', path: 'redscribe.internal/engagements/RS-UMB-0369/checklist' },
 	},
 	{
 		id: 'findings',
@@ -92,7 +92,7 @@ const features = [
 		points: [
 			'Draft → Review → QA, with changes requested at either stage',
 			'Inline comment threads anchored to highlighted text',
-			'My Queue shows only what’s assigned to you',
+			'My queue shows only what’s assigned to you',
 		],
 		link: { href: `${DOCS}/user-guide/findings/#the-review-workflow`, label: 'The review workflow' },
 		shot: { name: 'finding-review-dark', alt: 'A finding in QA with an inline comment thread and the Review / QA panel showing each completed step', path: 'redscribe.internal/findings/F007' },
@@ -163,7 +163,7 @@ const footer = [
 				<div class="wrap hero__inner">
 					<a class="release" href={`${DOCS}/changelog/`}>
 						<span class="release__tag mono">New</span>
-						<span>RedScribe 0.2.0-alpha.4 is out</span>
+						<span>RedScribe 0.6.0-alpha is out</span>
 						<span class="release__arrow" aria-hidden="true">→</span>
 					</a>
 					<h1 id="hero-title" class="hero__title">
@@ -345,7 +345,7 @@ const footer = [
 								</div>
 							)}
 							{b.key === 'cvss' && (
-								<Shot name="crop-cvss-dark" alt="The CVSS v4.0 calculator with metric pickers" width={399} height={660} frame={false} single class="tile__crop" />
+								<Shot name="crop-cvss-dark" alt="The CVSS v4.0 calculator: a live score and severity above rows of metric buttons" width={768} height={434} frame={false} single class="tile__crop" />
 							)}
 							{b.key === 'crypto' && (
 								<div class="keys mono" aria-hidden="true">
@@ -879,8 +879,8 @@ const footer = [
 				display: grid;
 				grid-template-columns: repeat(3, minmax(0, 1fr));
 				grid-template-areas:
-					'audit  audit  cvss'
-					'crypto mfa    cvss'
+					'audit  audit  crypto'
+					'cvss   cvss   mfa'
 					'trends trends roles'
 					'trends trends backup';
 				gap: 1rem;
@@ -935,9 +935,7 @@ const footer = [
 				border: 1px solid var(--hairline);
 			}
 			.tile--cvss :global(.tile__crop) {
-				max-width: 20rem;
 				width: 100%;
-				align-self: center;
 			}
 
 			.chain {
@@ -1310,8 +1308,8 @@ const footer = [
 					grid-template-columns: repeat(2, minmax(0, 1fr));
 					grid-template-areas:
 						'audit  audit'
-						'cvss   crypto'
-						'cvss   mfa'
+						'cvss   cvss'
+						'crypto mfa'
 						'trends trends'
 						'roles  backup';
 				}
