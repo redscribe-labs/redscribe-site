@@ -54,6 +54,7 @@ const features = [
 			'Status lifecycle from In Progress through QA, Delivered, and Closed',
 			'Team membership with default reviewer and QA per engagement',
 			'Scope changes go to a Team Lead for approval, with history kept',
+			'Retest outcomes close, reopen, or leave each finding automatically',
 		],
 		link: { href: `${DOCS}/user-guide/engagements/`, label: 'How engagements work' },
 		shot: { name: 'engagement-detail-dark', alt: 'An engagement overview in RedScribe: status, finding and checklist counts, scope, who has access, and review roles', path: 'redscribe.internal/engagements/RS-UMB-0369' },
@@ -75,11 +76,12 @@ const features = [
 		id: 'findings',
 		eyebrow: '03 · Findings',
 		title: 'Write it once. Score it properly.',
-		body: 'Findings are rich-text write-ups built from the sections your firm defines, scored with a CVSS calculator that speaks both v3.1 and v4.0. Start from an approved vulnerability catalogue entry instead of a blank page.',
+		body: 'Findings are rich-text write-ups built from the sections your firm defines, scored with a CVSS calculator that speaks both v3.1 and v4.0. Start from an approved finding catalogue entry instead of a blank page.',
 		points: [
 			'Built-in CVSS v3.1 and v4.0 calculator',
 			'Content sections you configure, per instance',
-			'A shared, QA-approved vulnerability catalogue',
+			'A shared, QA-approved finding catalogue',
+			'Archive a finding to keep it out of the report and portal',
 		],
 		link: { href: `${DOCS}/user-guide/findings/`, label: 'Writing findings' },
 		shot: { name: 'finding-editor-dark', alt: 'The finding editor with a rich-text description, severity and status, and the CVSS v4.0 calculator', path: 'redscribe.internal/findings/F001/edit' },
@@ -163,7 +165,7 @@ const footer = [
 				<div class="wrap hero__inner">
 					<a class="release" href={`${DOCS}/changelog/`}>
 						<span class="release__tag mono">New</span>
-						<span>RedScribe 0.6.0-alpha is out</span>
+						<span>RedScribe 0.7.0-alpha is out</span>
 						<span class="release__arrow" aria-hidden="true">→</span>
 					</a>
 					<h1 id="hero-title" class="hero__title">
