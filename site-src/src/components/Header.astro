@@ -17,7 +17,7 @@ const links = [
 				<rect x="9" y="18" width="15" height="4" rx="2" fill="#7a8185"/>
 				<rect x="9" y="25" width="9" height="4" rx="2" fill="#494d50"/>
 			</svg>
-			<span class="mono">RedScribe</span>
+			<span class="mono">RedScribe<span class="cursor" aria-hidden="true"></span></span>
 		</a>
 		<nav class="site-nav" aria-label="Primary">
 			{links.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -90,7 +90,7 @@ const links = [
 		font-size: 0.9375rem;
 		font-weight: 500;
 		padding: 0.45rem 0.8rem;
-		border-radius: 999px;
+		border-radius: 6px;
 		transition: color 150ms ease, background 150ms ease;
 	}
 	.site-nav a:hover {
@@ -108,7 +108,7 @@ const links = [
 		display: inline-flex;
 		color: var(--ink-muted);
 		padding: 0.4rem;
-		border-radius: 999px;
+		border-radius: 6px;
 		transition: color 150ms ease;
 	}
 	.gh:hover {

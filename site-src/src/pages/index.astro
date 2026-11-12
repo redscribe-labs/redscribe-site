@@ -161,55 +161,45 @@ const footer = [
 		<main>
 			<!-- ============================================================ hero -->
 			<section class="hero" aria-labelledby="hero-title">
-				<div class="hero__glow" aria-hidden="true"></div>
-				<div class="wrap hero__inner">
-					<a class="release" href={`${DOCS}/changelog/`}>
-						<span class="release__tag mono">New</span>
-						<span>RedScribe 0.7.0-alpha is out</span>
-						<span class="release__arrow" aria-hidden="true">→</span>
-					</a>
-					<h1 id="hero-title" class="hero__title">
-						From first finding<br />
-						<span class="grad-text">to final sign-off.</span>
-					</h1>
-					<p class="hero__sub">
-						Testers work the checklist and write findings. Reviewers and QA sign
-						them off. Team leads see every engagement, scope change, and queue at a
-						glance. Then RedScribe builds the report. Self-hosted, and encrypted
-						per engagement.
-					</p>
-					<div class="hero__actions">
-						<a class="btn btn--primary" href={`${DOCS}/getting-started/quickstart/`}>Get started</a>
-						<a class="btn btn--ghost" href={SAMPLE_PDF}>See a sample report</a>
+				<div class="wrap hero__grid">
+					<div class="hero__copy">
+						<span class="eyebrow">Self-hosted pentest reporting</span>
+						<h1 id="hero-title" class="hero__title">
+							From first finding to final sign&#8209;off<span class="cursor" aria-hidden="true"></span>
+						</h1>
+						<p class="hero__sub">
+							Testers work the checklist and write findings. Reviewers and QA sign them
+							off. Team leads see every engagement, scope change, and queue at a glance.
+							Then RedScribe builds the report — self-hosted, encrypted per engagement.
+						</p>
+						<div class="hero__actions">
+							<a class="btn btn--primary" href={`${DOCS}/getting-started/quickstart/`}>Get started</a>
+							<a class="btn btn--ghost" href={SAMPLE_PDF}>See a sample report</a>
+						</div>
+						<p class="hero__meta mono">
+							v0.8.0-alpha · Free for personal &amp; noncommercial · <a href={`${DOCS}/start/alpha-status/`}>Alpha status</a>
+						</p>
 					</div>
-					<p class="hero__note">
-						Free for personal and noncommercial use · Commercial use free for the first year · <a href={`${DOCS}/start/alpha-status/`}>Alpha software</a>
-					</p>
-				</div>
 
-				<div class="wrap hero__stage">
-					<Shot
-						name="dashboard-dark"
-						alt="The RedScribe dashboard: engagement counts, findings awaiting your review and QA, findings by severity and workflow status, and recently updated engagements"
-						width={1920}
-						height={1080}
-						sizes="(min-width: 76rem) 73rem, 94vw"
-						eager
-						path="redscribe.internal"
-					/>
-					<div class="hero__float">
-						<FindingCard />
+					<div class="hero__stage">
+						<Shot
+							name="dashboard-dark"
+							alt="The RedScribe dashboard: engagement counts, findings awaiting your review and QA, findings by severity and workflow status, and recently updated engagements"
+							width={1920}
+							height={1080}
+							sizes="(min-width: 60rem) 48rem, 94vw"
+							eager
+							path="redscribe.internal / dashboard"
+						/>
+						<div class="hero__float">
+							<FindingCard />
+						</div>
 					</div>
 				</div>
 
 				<div class="wrap">
-					<ul class="proof" aria-label="Highlights">
-						{proof.map((p) => (
-							<li>
-								<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-								{p}
-							</li>
-						))}
+					<ul class="proof mono" aria-label="Highlights">
+						{proof.map((p) => <li>{p}</li>)}
 					</ul>
 				</div>
 			</section>
@@ -269,7 +259,7 @@ const footer = [
 			<!-- ============================================================ reporting (full-bleed) -->
 			<section class="reporting" id="reporting" aria-labelledby="reporting-title">
 				<div class="wrap">
-					<div class="section-head section-head--center reveal">
+					<div class="reporting__head">
 						<span class="eyebrow">05 · Reporting</span>
 						<h2 id="reporting-title">The report your client actually reads.</h2>
 						<p>
@@ -278,18 +268,27 @@ const footer = [
 							design yourself, styled with your own document’s named styles.
 						</p>
 					</div>
-					<div class="reporting__pages reveal">
-						<Shot name="sample-report-pages" alt="Three pages of an exported RedScribe PDF report: the cover, a findings-by-severity chart with an overview table, and a finding write-up" width={1920} height={880} frame={false} sizes="(min-width: 76rem) 68rem, 94vw" />
+
+					<div class="reporting__doc">
+						<div class="reporting__chrome" aria-hidden="true">
+							<span class="reporting__mark"><i></i><i></i><i></i></span>
+							<span class="mono">sample-report.pdf</span>
+							<span class="mono reporting__ext">PDF · HTML · Markdown · Word</span>
+						</div>
+						<Shot name="sample-report-pages" alt="Three pages of an exported RedScribe PDF report: the cover, a findings-by-severity chart with an overview table, and a finding write-up" width={1920} height={880} frame={false} sizes="(min-width: 76rem) 70rem, 94vw" />
 					</div>
-					<ul class="formats reveal" aria-label="Export formats">
-						<li><strong>PDF</strong><span>with optional password</span></li>
-						<li><strong>Word</strong><span>your own .docx template</span></li>
-						<li><strong>HTML</strong><span>self-contained file</span></li>
-						<li><strong>Markdown</strong><span>zipped export</span></li>
-					</ul>
-					<div class="center reveal">
-						<a class="btn btn--primary" href={SAMPLE_PDF}>Download the 38-page sample</a>
-						<a class="btn btn--ghost" href={`${DOCS}/admin/report-profiles/`}>Report profiles</a>
+
+					<div class="reporting__foot">
+						<ul class="formats" aria-label="Export formats">
+							<li><strong class="mono">PDF</strong><span>optional password</span></li>
+							<li><strong class="mono">Word</strong><span>your own .docx template</span></li>
+							<li><strong class="mono">HTML</strong><span>self-contained file</span></li>
+							<li><strong class="mono">Markdown</strong><span>zipped export</span></li>
+						</ul>
+						<div class="reporting__cta">
+							<a class="btn btn--primary" href={SAMPLE_PDF}>Download the 38-page sample</a>
+							<a class="btn btn--ghost" href={`${DOCS}/admin/report-profiles/`}>Report profiles</a>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -534,114 +533,97 @@ const footer = [
 			/* ---------------------------------------------------------- hero */
 			.hero {
 				position: relative;
-				padding: 5.5rem 0 4rem;
+				padding: 4.5rem 0 3.25rem;
 				overflow: clip;
 			}
-			.hero__glow,
-			.closing__glow {
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				background:
-					radial-gradient(42rem 26rem at 50% 8%, color-mix(in srgb, var(--brand-500) 30%, transparent), transparent 70%),
-					radial-gradient(34rem 24rem at 16% 38%, color-mix(in srgb, var(--navy-500) 26%, transparent), transparent 70%),
-					radial-gradient(34rem 24rem at 86% 34%, color-mix(in srgb, var(--mist-500) 24%, transparent), transparent 70%);
-				filter: blur(8px);
-			}
-			.hero__inner {
-				position: relative;
-				text-align: center;
-				display: flex;
-				flex-direction: column;
+			/* Asymmetric: copy left, the real product UI right, bleeding toward
+			   the edge. No glow, no gradient, no browser mockup. */
+			.hero__grid {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+				gap: 3.5rem;
 				align-items: center;
 			}
-			.release {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.7rem;
-				padding: 0.35rem 0.9rem 0.35rem 0.35rem;
-				border-radius: 999px;
-				border: 1px solid var(--hairline);
-				background: color-mix(in srgb, var(--raised) 75%, transparent);
-				color: var(--ink-soft);
-				font-size: 0.875rem;
-				text-decoration: none;
-				transition: border-color 160ms ease;
-			}
-			.release:hover {
-				border-color: var(--brand-700);
-			}
-			.release__tag {
-				padding: 0.2rem 0.55rem;
-				border-radius: 999px;
-				background: var(--brand-800);
-				color: var(--brand-200);
-				font-size: 0.75rem;
-				font-weight: 600;
-			}
-			.release__arrow {
-				color: var(--brand-300);
+			.hero__copy {
+				max-width: 37rem;
 			}
 			.hero__title {
-				margin-top: 1.75rem;
-				font-size: clamp(2.6rem, 7vw, 5.25rem);
+				margin-top: 1.4rem;
+				font-size: clamp(2.35rem, 4.8vw, 4rem);
 				letter-spacing: -0.035em;
-				line-height: 1.02;
+				line-height: 1.05;
 			}
 			.hero__sub {
-				margin-top: 1.5rem;
-				max-width: 40rem;
-				font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
-				text-wrap: balance;
+				margin-top: 1.4rem;
+				max-width: 34rem;
+				font-size: clamp(1.02rem, 1.25vw, 1.16rem);
 				color: var(--ink-soft);
 			}
 			.hero__actions {
-				margin-top: 2.25rem;
+				margin-top: 2rem;
 				display: flex;
 				flex-wrap: wrap;
-				justify-content: center;
-				gap: 0.75rem;
+				gap: 0.7rem;
 			}
-			.hero__note {
-				margin-top: 1.25rem;
+			.hero__meta {
+				margin-top: 1.5rem;
 				max-width: none;
-				font-size: 0.8125rem;
+				font-size: 0.74rem;
+				letter-spacing: 0.02em;
 				color: var(--ink-faint);
 			}
-			.hero__note a {
+			.hero__meta a {
 				color: var(--ink-muted);
 			}
 			.hero__stage {
 				position: relative;
-				margin-top: 4rem;
+				margin-right: -4rem;
 			}
 			.hero__float {
 				position: absolute;
-				left: -0.5rem;
-				bottom: -2.5rem;
-				width: 20rem;
-				transform: rotate(-2deg);
-				filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+				left: -1.5rem;
+				bottom: -1.6rem;
+				width: 16.5rem;
+				filter: drop-shadow(0 22px 38px rgba(0, 0, 0, 0.5));
 			}
+			/* A quiet, mono, rule-separated capability strip. Each item is led by a
+			   small redaction tick echoing the logo. */
 			.proof {
 				list-style: none;
-				margin: 5rem 0 0;
-				padding: 1.5rem 0 0;
+				margin: 3.5rem 0 0;
+				padding: 1.1rem 0 0;
 				border-top: 1px solid var(--hairline-soft);
 				display: flex;
 				flex-wrap: wrap;
-				justify-content: center;
-				gap: 0.75rem 2.25rem;
+				gap: 0.55rem 1.6rem;
 				color: var(--ink-muted);
-				font-size: 0.9375rem;
+				font-size: 0.75rem;
+				letter-spacing: 0.02em;
 			}
 			.proof li {
 				display: inline-flex;
 				align-items: center;
-				gap: 0.5rem;
+				gap: 0.55rem;
 			}
-			.proof svg {
-				color: var(--brand-400);
+			.proof li::before {
+				content: '';
+				width: 0.7rem;
+				height: 0.22rem;
+				border-radius: 1px;
+				background: var(--brand-700);
+				flex: none;
+			}
+			@media (max-width: 60rem) {
+				.hero__grid {
+					grid-template-columns: 1fr;
+					gap: 2.5rem;
+				}
+				.hero__stage {
+					margin-right: 0;
+				}
+				.hero__float {
+					display: none;
+				}
 			}
 
 			/* ---------------------------------------------------------- roles */
@@ -833,44 +815,107 @@ const footer = [
 			}
 
 			/* ---------------------------------------------------------- reporting */
+			/* The deliverable. A distinct surface (the "output" chapter), the real
+			   report shown as a document artifact, left-aligned — no glow. */
 			.reporting {
 				position: relative;
 				margin-top: 8rem;
-				padding: 6rem 0;
-				background:
-					radial-gradient(50rem 22rem at 50% 0%, color-mix(in srgb, var(--brand-500) 16%, transparent), transparent 70%),
-					var(--raised);
+				padding: 5.5rem 0;
+				background: var(--raised);
 				border-block: 1px solid var(--hairline-soft);
 			}
-			.reporting__pages {
-				margin: 0 auto;
-				max-width: 68rem;
+			.reporting__head {
+				max-width: 42rem;
 			}
+			.reporting__head h2 {
+				margin-top: 1rem;
+				font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+				letter-spacing: -0.025em;
+			}
+			.reporting__head p {
+				margin-top: 1.1rem;
+				max-width: 40rem;
+				color: var(--ink-soft);
+			}
+
+			/* The report framed like an open document, with its own file chrome. */
+			.reporting__doc {
+				margin-top: 2.75rem;
+				border: 1px solid var(--hairline);
+				border-radius: var(--radius-md);
+				overflow: hidden;
+				background: var(--void);
+				box-shadow: 0 44px 90px -55px rgba(0, 0, 0, 0.85);
+			}
+			.reporting__chrome {
+				display: flex;
+				align-items: center;
+				gap: 0.7rem;
+				padding: 0.6rem 0.9rem;
+				border-bottom: 1px solid var(--hairline-soft);
+				font-size: 0.72rem;
+				color: var(--ink-faint);
+			}
+			.reporting__mark {
+				display: inline-flex;
+				flex-direction: column;
+				gap: 2px;
+				flex: none;
+			}
+			.reporting__mark i {
+				height: 2px;
+				border-radius: 1px;
+				background: var(--ink-faint);
+			}
+			.reporting__mark i:nth-child(1) { width: 11px; background: var(--brand-500); }
+			.reporting__mark i:nth-child(2) { width: 8px; }
+			.reporting__mark i:nth-child(3) { width: 5px; }
+			.reporting__ext { margin-left: auto; }
+
+			.reporting__foot {
+				margin-top: 2rem;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.5rem;
+			}
+			/* A mono format table: one hairline-boxed row, a column per format. */
 			.formats {
 				list-style: none;
-				margin: 3rem auto 2.5rem;
+				margin: 0;
 				padding: 0;
-				max-width: 56rem;
-				display: grid;
-				grid-template-columns: repeat(4, minmax(0, 1fr));
-				gap: 0.75rem;
+				display: flex;
+				flex-wrap: wrap;
+				border: 1px solid var(--hairline);
+				border-radius: 8px;
+				overflow: hidden;
 			}
 			.formats li {
 				display: flex;
 				flex-direction: column;
 				gap: 0.25rem;
-				padding: 1rem 1.1rem;
-				border-radius: var(--radius-md);
-				border: 1px solid var(--hairline);
-				background: var(--void);
+				padding: 0.65rem 1rem;
+				border-right: 1px solid var(--hairline-soft);
 			}
+			.formats li:last-child { border-right: 0; }
 			.formats strong {
 				color: var(--ink);
-				font-family: var(--font-mono);
+				font-size: 0.78rem;
+				letter-spacing: 0.04em;
 			}
 			.formats span {
-				font-size: 0.875rem;
+				font-size: 0.74rem;
 				color: var(--ink-muted);
+			}
+			.reporting__cta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7rem;
+			}
+			@media (max-width: 40rem) {
+				.formats { width: 100%; }
+				.formats li { flex: 1 1 50%; border-bottom: 1px solid var(--hairline-soft); }
 			}
 
 			/* ---------------------------------------------------------- bento */
@@ -1195,10 +1240,7 @@ const footer = [
 				border-top: 1px solid var(--hairline-soft);
 			}
 			.closing__glow {
-				background:
-					radial-gradient(40rem 22rem at 50% 100%, color-mix(in srgb, var(--brand-500) 26%, transparent), transparent 70%),
-					radial-gradient(30rem 18rem at 20% 80%, color-mix(in srgb, var(--navy-500) 20%, transparent), transparent 70%),
-					radial-gradient(30rem 18rem at 80% 80%, color-mix(in srgb, var(--mist-500) 18%, transparent), transparent 70%);
+				display: none;
 			}
 			.closing__inner {
 				position: relative;
